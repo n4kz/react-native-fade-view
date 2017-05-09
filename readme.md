@@ -44,6 +44,15 @@ class Example extends Component {
  animationDuration | Fade animation duration |  Number | 225
  active            | Fade view state         | Boolean | false
 
+## Example
+
+```bash
+git clone https://github.com/n4kz/react-native-fade-view
+cd react-native-fade-view/example
+npm install
+react-native run-ios # or run-android
+```
+
 ## Copyright and License
 
 BSD License
