@@ -21,7 +21,7 @@ export default class FadeView extends PureComponent {
 
     this.renderChild = this.renderChild.bind(this);
 
-    let { active } = this.props.active;
+    let { active } = this.props;
 
     this.state = {
       progress: new Animated.Value(Number(active)),
