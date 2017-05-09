@@ -1,0 +1,19 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "android": "node node_modules/react-native/local-cli/cli.js run-android"
+  },
+  "dependencies": {
+    "react": "16.0.0-alpha.6",
+    "react-native": "0.44.0",
+    "react-native-fade-view": "file:../",
+    "react-native-indicators": "^0.7.1",
+    "react-native-material-buttons": "^0.3.0"
+  },
+  "devDependencies": {
+    "babel-preset-react-native": "1.9.1"
+  }
+}
