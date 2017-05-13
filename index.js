@@ -11,10 +11,13 @@ export default class FadeView extends PureComponent {
   };
 
   static propTypes = {
-    ...View.propTypes,
-
     animationDuration: PropTypes.number,
     active: PropTypes.bool,
+
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]),
   };
 
   constructor(props) {
