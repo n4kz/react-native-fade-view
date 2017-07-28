@@ -26,8 +26,9 @@
   },
 
   "scripts": {
-    "test": "node_modules/.bin/eslint index.js styles.js example/app.js"
+    "lint": "eslint index.js styles.js example/app.js"
   },
+
   "dependencies": {
     "prop-types": "^15.5.10"
   }
