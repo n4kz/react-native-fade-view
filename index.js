@@ -47,6 +47,7 @@ export default class FadeView extends PureComponent {
   }
 
   renderChild(child, index) {
+    let { active } = this.props;
     let { progress } = this.state;
 
     let opacity = progress.interpolate({
@@ -54,8 +55,15 @@ export default class FadeView extends PureComponent {
       outputRange: index? [0, 1] : [1, 0],
     });
 
+    let pointerEvents = (active ^ !!index)?
+      'none':
+      'box-none';
+
     return (
-      <Animated.View style={[styles.container, { opacity }]}>
+      <Animated.View
+        style={[styles.container, { opacity }]}
+        pointerEvents={pointerEvents}
+      >
         {child}
       </Animated.View>
     );
