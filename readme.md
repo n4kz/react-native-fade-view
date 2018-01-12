@@ -42,10 +42,11 @@ class Example extends Component {
 
 ## Properties
 
- name              | description             | type    | default
-:----------------- |:----------------------- | -------:|:------------
- animationDuration | Fade animation duration |  Number | 225
- active            | Fade view state         | Boolean | false
+ name                 | description               | type    | default
+:-------------------- |:------------------------- | -------:|:------------
+ animationDuration    | Fade animation duration   |  Number | 225
+ active               | Fade view state           | Boolean | false
+ removeHiddenSubviews | Remove invisible subviews | Boolean | true
 
 ## Example
 
@@ -60,4 +61,4 @@ react-native run-ios # or run-android
 
 BSD License
 
-Copyright 2017 Alexander Nazarov. All rights reserved.
+Copyright 2017-2018 Alexander Nazarov. All rights reserved.
