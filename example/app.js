@@ -27,6 +27,12 @@ export default function init() {
             <Text style={{ color: 'rgba(255, 255, 255, 0.54)', backgroundColor: 'transparent', fontSize: 17 }}>
               <Text style={{ color: 'rgba(255, 255, 255, 0.87)', fontWeight: '500' }}>FadeView</Text> is in active state
             </Text>
+            <Text style={{ color: 'rgba(255, 255, 255, 0.54)', backgroundColor: 'transparent', fontSize: 21 }}>
+              <Text style={{ color: 'rgba(255, 255, 255, 0.87)', fontWeight: '500' }}>FadeView</Text> displaying 2
+            </Text>
+            <Text style={{ color: 'rgba(255, 255, 255, 0.54)', backgroundColor: 'transparent', fontSize: 23 }}>
+              <Text style={{ color: 'rgba(255, 255, 255, 0.87)', fontWeight: '500' }}>FadeView</Text> displaying 3
+            </Text>
           </FadeView>
 
           <View style={{ padding: 32, backgroundColor: 'white' }}>
@@ -35,6 +41,22 @@ export default function init() {
               title='toggle state'
               titleColor='white'
               onPress={() => this.setState(({ active }) => ({ active: !active }))}
+              rippleDuration={800}
+              rippleSequential={false}
+            />
+            <RaisedTextButton
+              color='#01579B'
+              title='set index 2'
+              titleColor='white'
+              onPress={() => this.setState(({ active }) => ({ active: 2 }))}
+              rippleDuration={800}
+              rippleSequential={false}
+            />
+            <RaisedTextButton
+              color='#01579B'
+              title='set index 3'
+              titleColor='white'
+              onPress={() => this.setState(({ active }) => ({ active: 3 }))}
               rippleDuration={800}
               rippleSequential={false}
             />
