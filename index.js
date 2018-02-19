@@ -19,6 +19,7 @@ export default class FadeView extends PureComponent {
       PropTypes.bool,
       PropTypes.number,
     ]),
+
     removeHiddenSubviews: PropTypes.bool,
 
     children: PropTypes.oneOfType([
@@ -31,60 +32,44 @@ export default class FadeView extends PureComponent {
     super(props);
 
     this.renderChild = this.renderChild.bind(this);
-    this.mounted = false;
 
-    this.state = {
-      progressList: {},
-      animatingList: {},
-    };
-  }
-
-  componentDidMount() {
-    this.mounted = true;
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
+    this.progress = {};
+    this.animation = {};
   }
 
   componentWillReceiveProps({ active, animationDuration }) {
-    let { progressList, animatingList } = this.state;
-    active = Number(active);
-    let prevActive =  Number(this.props.active);
+    let activeIndex = Number(this.props.active);
+    let nextActiveIndex = Number(active);
 
-    if (active !== prevActive) {
-      let prevProgress = progressList[prevActive];
-      if (!prevProgress) {
-        prevProgress = new Animated.Value(1);
-        progressList = { ...progressList, [prevActive]: prevProgress };
-      }
+    if (nextActiveIndex !== activeIndex) {
+      let {
+        [activeIndex]: value = new Animated.Value(1),
+        [nextActiveIndex]: nextValue = new Animated.Value(0),
+      } = this.progress;
 
-      let progress = progressList[active];
-      if (!progress) {
-        progress = new Animated.Value(0);
-        progressList = { ...progressList, [active]: progress };
-      }
-      animatingList = { ...animatingList, [active]: true, [prevActive]: true };
-      this.setState({ progressList, animatingList });
+      this.progress[activeIndex] = value;
+      this.progress[nextActiveIndex] = nextValue;
 
-      for (let index in progressList) {
-        index = Number(index);
+      for (let key in this.progress) {
+        let index = Number(key);
 
-        if (index !== active && index !== prevActive && !animatingList[index]) {
+        if (activeIndex !== index && nextActiveIndex !== index) {
           continue;
         }
 
-        Animated
-          .timing(progressList[index], {
-            toValue: ((index === active) ? 1 : 0),
+        let animation
+          = this.animation[index]
+          = Animated
+          .timing(this.progress[index], {
+            toValue: index === nextActiveIndex? 1 : 0,
             duration: animationDuration,
             useNativeDriver: true,
-          })
+          });
+
+        animation
           .start(() => {
-            if (this.mounted) {
-              let { animatingList } = this.state;
-              animatingList = { ...animatingList, [index]: false };
-              this.setState({ animatingList });
+            if (animation === this.animation[index]) {
+              this.animation[index] = null;
             }
           });
       }
@@ -93,21 +78,18 @@ export default class FadeView extends PureComponent {
 
   renderChild(child, index) {
     let { active, removeHiddenSubviews } = this.props;
-    let { progressList, animatingList } = this.state;
-    let progress = progressList[index];
-    let animating = animatingList[index];
-    active = Number(active);
+    let hidden = Number(active) !== index;
 
-    let hidden = active !== index;
-
-    if (!animating && hidden && removeHiddenSubviews) {
+    if (hidden && removeHiddenSubviews && null == this.animation[index]) {
       return null;
     }
 
-    let opacity = !progress ? ((index === active) ? 1 : 0) : progress.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, 1],
-    });
+    let progress = this.progress[index];
+    let opacity = null != progress?
+      progress:
+      hidden?
+        0:
+        1;
 
     let pointerEvents = hidden?
       'none':
