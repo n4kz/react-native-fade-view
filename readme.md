@@ -2,15 +2,12 @@
 [npm-url]: https://npmjs.com/package/react-native-fade-view
 [license-badge]: https://img.shields.io/npm/l/react-native-fade-view.svg?colorB=448aff
 [license-url]: https://raw.githubusercontent.com/n4kz/react-native-fade-view/master/license.txt
-[codeclimate-badge]: https://img.shields.io/codeclimate/maintainability/n4kz/react-native-fade-view.svg
-[codeclimate-url]: https://codeclimate.com/github/n4kz/react-native-fade-view
 [example-url]: https://cloud.githubusercontent.com/assets/2055622/25848352/ab91e994-34c2-11e7-93c3-55477456b846.gif
 
 # react-native-fade-view
 
 [![npm][npm-badge]][npm-url]
 [![license][license-badge]][license-url]
-[![codeclimate][codeclimate-badge]][codeclimate-url]
 
 Cross fade effect for child components
 
@@ -31,12 +28,12 @@ import FadeView from 'react-native-fade-view';
 
 class Example extends Component {
   render() {
-    let { active = 0 } = this.state;
+    let { active } = this.state;
 
     return (
       <FadeView active={active}>
         <Text>loading...</Text>
-        <Image onLoad={() => this.setState({ active: 1 })} />
+        <Image onLoad={() => this.setState({ active: true })} />
       </FadeView>
     );
   }
@@ -47,8 +44,8 @@ class Example extends Component {
 
  name                 | description               | type    | default
 :-------------------- |:------------------------- | -------:|:------------
- active               | Fade view state           |  Number | 0
  animationDuration    | Fade animation duration   |  Number | 225
+ active               | Fade view state           | Boolean | false
  removeHiddenSubviews | Remove invisible subviews | Boolean | true
 
 ## Example
