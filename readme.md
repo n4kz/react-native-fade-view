@@ -2,12 +2,15 @@
 [npm-url]: https://npmjs.com/package/react-native-fade-view
 [license-badge]: https://img.shields.io/npm/l/react-native-fade-view.svg?colorB=448aff
 [license-url]: https://raw.githubusercontent.com/n4kz/react-native-fade-view/master/license.txt
+[codeclimate-badge]: https://img.shields.io/codeclimate/maintainability/n4kz/react-native-fade-view.svg
+[codeclimate-url]: https://codeclimate.com/github/n4kz/react-native-fade-view
 [example-url]: https://cloud.githubusercontent.com/assets/2055622/25848352/ab91e994-34c2-11e7-93c3-55477456b846.gif
 
 # react-native-fade-view
 
 [![npm][npm-badge]][npm-url]
 [![license][license-badge]][license-url]
+[![codeclimate][codeclimate-badge]][codeclimate-url]
 
 Cross fade effect for child components
 
