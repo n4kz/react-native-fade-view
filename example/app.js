@@ -21,11 +21,11 @@ export default function init() {
       let { active } = this.state;
 
       return (
-        <View style={{ flex: 1, backgroundColor: '#01579B' }}>
+        <View style={styles.container}>
           <FadeView style={{ flex: 1 }} animationDuration={450} active={active}>
             <WaveIndicator color='white' count={3} size={80} />
-            <Text style={{ color: 'rgba(255, 255, 255, 0.54)', backgroundColor: 'transparent', fontSize: 17 }}>
-              <Text style={{ color: 'rgba(255, 255, 255, 0.87)', fontWeight: '500' }}>FadeView</Text> is in active state
+            <Text style={styles.text}>
+              <Text style={styles.highlight}>FadeView</Text> is in active state
             </Text>
           </FadeView>
 
@@ -46,3 +46,21 @@ export default function init() {
 
   AppRegistry.registerComponent('example', () => Example);
 }
+
+const styles = {
+  text: {
+    color: 'rgba(255, 255, 255, 0.54)',
+    backgroundColor: 'transparent',
+    fontSize: 17,
+  },
+
+  highlight: {
+    color: 'rgba(255, 255, 255, 0.87)',
+    fontWeight: '500',
+  },
+
+  container: {
+    flex: 1,
+    backgroundColor: '#01579B',
+  },
+};
